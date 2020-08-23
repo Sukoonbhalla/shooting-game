@@ -23,14 +23,14 @@ var bulletGroup;
 
 function preload(){
   girlImg=loadImage("images/download.png");
-  groundImage = loadImage("images/ground.png");
+  groundImage = loadImage("images/ground2-5000x20.png");
   target1Img = loadImage("images/target 1-200x200.png");
   target2Img = loadImage("images/target 2-200x200.png");
   target3Img = loadImage("images/target 3-200x200.png");
   target4Img = loadImage("images/target 4-200x200.png");
   target5Img = loadImage("images/target 5-200x200.png");
   target6Img = loadImage("images/target 6-200x200.png");
-  gameOverImg = loadImage("images/game over.jpg");
+  gameOverImg = loadImage("images/gameOver2.png");
   restartImg = loadImage("images/restart-100x100.png");
 
   }
@@ -48,8 +48,8 @@ targetsGroup.setColliderEach("circle",0,0,40)
 bulletGroup.setColliderEach("circle",0,0,40)
 
  invisibleGround = createSprite(width/2,height-10,width,125);  
- invisibleGround.shapeColor =  "#f4cbaa";
- //invisibleGround.visible = false;
+// invisibleGround.shapeColor =  "blue";
+ invisibleGround.visible = false;
 
  ground = createSprite(width/2,height,width,2);
  // ground.shapeColor = "red";
@@ -58,7 +58,7 @@ bulletGroup.setColliderEach("circle",0,0,40)
   ground.x = width/2;
   ground.velocityX = -6; 
 
-  gameOver = createSprite(width/2,height/2- 50);
+  gameOver = createSprite(width/2,height/2- 100);
   gameOver.addImage(gameOverImg);
 
   restart = createSprite(width/2,height/2);
@@ -102,8 +102,8 @@ if(gameState===PLAY){
        gameState = END;
    }
 
-  //if(targetsGroup.isTouching(invisibleGround)){
-   //targetsGroup.bounceOff(invisibleGround);  
+ // if(targetsGroup.isTouching(invisibleGround)){
+ //  targetsGroup.bounceOff(invisibleGround);  
  //}
  
 }
@@ -116,6 +116,8 @@ else if (gameState===END){
   if(mousePressedOver(restart)){
     console.log("test");
     gameState = PLAY;
+    gameOver.visible = false;
+    restart.visible = false;
     score = 0;
   }
 
@@ -126,11 +128,11 @@ else if (gameState===END){
   
 }
 function spawnObject(){
-  if(frameCount % 200===0){
+  if(frameCount % 150===0){
     targets = createSprite(windowWidth,height-290,20,30);
-   targets.velocityX = -5;
-  //  targets.velocityY = 5;
-  // targets.bounceOff(invisibleGround);
+   targets.velocityX = -10;
+  // targets.velocityY = 10;
+ //  targets.bounceOff(invisibleGround);
     var rand = Math.round(random(1,6));
     switch(rand) {
       case 1: targets.addImage(target1Img);
