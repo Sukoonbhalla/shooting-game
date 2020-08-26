@@ -116,6 +116,8 @@ else if (gameState===END){
   if(mousePressedOver(restart)){
     console.log("test");
     gameState = PLAY;
+    ground.x = width/2;
+    ground.velocityX = -6; 
     gameOver.visible = false;
     restart.visible = false;
     score = 0;
